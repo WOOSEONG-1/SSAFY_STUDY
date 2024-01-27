@@ -18,27 +18,23 @@ public class Main{
 
         int m = Integer.parseInt(br.readLine());
         stk = new StringTokenizer(br.readLine());
-        int[] temp = new int[m];
+
         for ( int i = 0 ; i < m ; i++ ){
             int a = Integer.parseInt(stk.nextToken());
-            int result = b_search(arr, a, 0, n-1);
-            temp[i] = ( result != -1 ) ? 1 : 0;
+            sb.append(b_search(arr, a, 0, n-1)).append("\n");
         }
-
-        for ( int s : temp ){
-            System.out.println(s);
-        }
+        System.out.print(sb);
     }
 
     static int b_search(int[] arr, int find, int left, int right){
 
         if ( left > right )
-            return -1;
+            return 0;
 
         int mid = ( left + right) /2;
 
         if ( arr[mid] == find )
-            return mid;
+            return 1;
         else if ( arr[mid] < find )
             return b_search(arr, find, mid+1, right);
         else
