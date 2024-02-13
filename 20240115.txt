@@ -86,3 +86,53 @@ Q?
 	- 함수의 인자는 어떤 것을 주는게 좋은지 ( 판단 기준 )
 		Ex) 배열 탐색 큐 BFS : static Queue, n, m, 
 	- 
+	
+import sys
+sys.stdin = open('C:/temp/input.txt', 'r')
+dy = [1, -1, 0, 0, 1, -1]
+dx = [0, 0, 1, -1, 1, -1]
+def check(y, x, c):
+    flag = 0
+    if c == 1:
+        r_c = 2
+    else:
+        r_c = 1
+    for k in range(6):
+        ny, nx = y, x
+        while True:
+            ny += dy[k]
+            nx += dx[k]
+            if 0 <= ny <= n and 0 <= nx <= n :
+                if B[ny][nx] == r_c:
+                    flag = 1
+                if flag == 1 and B[ny][nx] == c:
+                    flag = 0
+            else:
+                break
+        ny, nx = y, x
+        while True:
+            ny += dy[k]
+            nx += dx[k]
+            if 0 <= ny <= n and 0 <= nx <= n:
+                if B[ny][nx] == r_c:
+                    B[ny][nx] = c
+            else:
+                break
+
+for t in range(1, int(input())+1):
+    n, m = map(int, input().split())
+    B = [[0] * (n+1) for _ in range(n+1)]
+    mid = n//2
+    B[mid][mid], B[mid][mid+1], B[mid+1][mid], B[mid+1][mid+1] = 2, 1, 1, 2
+    for i in range(m):
+        ex, ey, ec = map(int, input().split())
+        B[ey][ex] = ec
+        check(ey, ex, ec)
+    cnt = 0
+    for i in B:
+        for j in i :
+            if j == 1:
+                cnt += 1
+            print(j, end = ' ')
+        print()
+    print(f'#{t} {cnt} {n*n-cnt}')
