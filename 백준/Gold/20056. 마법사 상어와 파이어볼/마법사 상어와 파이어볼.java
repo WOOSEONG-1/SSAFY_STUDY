@@ -115,11 +115,11 @@ public class Main {
 			// 파이어볼 각각 개체마다 실행
 			for (Fireball f : lst) {
 				// 기존 좌표 + 속력*방향만큼 이동
-				int ny = f.y + dy[f.d] * f.s;
-				int nx = f.x + dx[f.d] * f.s;
+				int ny = f.y + dy[f.d] * f.s%n;
+				int nx = f.x + dx[f.d] * f.s%n;
 				if (ny < 0 || ny >= n || nx < 0 || nx >= n) {
-					ny = (1000000*n + ny) % n;
-					nx = (1000000*n + nx) % n;
+					ny = (n + ny) % n;
+					nx = (n + nx) % n;
 				}
 
 				f.y = ny;
