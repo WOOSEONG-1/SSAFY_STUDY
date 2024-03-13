@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            border-width: 1px;
+            border-style: solid;
+            border-color: black;
+        }
+        h1 {
+            color: red;
+        }
+        .brown {
+            color: brown;
+        }
+        /*  hover : 마우스가 올라가면 적용 */
+        .btn:hover {
+            color: white;
+            background-color: black;
+        }
+        /* nth-child , nth-of-type */
+        /* parent 클래스를 적용한 자식 중 2번째 라인에서 속성이 h2인
+            자식에게 적용한다. */
+        .parent > h2:nth-child(2) {
+            color: blue;
+        }
+        /* h2 속성을 가진 자식 중 2번째 */
+        .parent > h2:nth-of-type(2){
+            color: aqua;
+        }
+        /* ul 태그의 자식 li 속성 중 짝수 번째만 적용 */
+        ul > li:nth-child(2n){
+            color: red;
+        }
+        /* class가 blue인 h1 태그에게 적용 */
+        h1[class="tan"]{
+            color:tan
+        }
+        /* 입력 형식이 email인 input 태그에 적용 */
+        input[type="emial"]
+    </style>
+</head>
+<body>
+    <input type="email">
+    <div class="parent">
+        <h1 class="brown">제목 1</h1>
+        <h2>제목 2</h2>
+        <h1 class="tan">제목 1</h1>
+        <h2>제목 2</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
+            Nulla minima et nobis id. Culpa praesentium alias quam mollitia <br>
+            doloremque, tenetur assumenda cupiditate quisquam delectus! Maxime, <br>
+            impedit? Sit soluta quia error!</p>
+        <button class="btn">버튼</button>        
+    </div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+</body>
+</html>
