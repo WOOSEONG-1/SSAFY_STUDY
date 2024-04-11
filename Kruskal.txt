@@ -1,0 +1,53 @@
+from queue import PriorityQueue
+
+def find(a):
+    if parent[a] == a:
+        return a
+    parent[a] = find(parent[a])
+    return parent[a]
+
+
+def union(a, b, w):
+    global dist
+    a = find(a)
+    b = find(b)
+    if a == b:
+        return
+    if a > b:
+        parent[a] = b
+    elif a < b:
+        parent[b] = a
+    dist += w
+
+class Edge:
+
+    def __init__(self, start, end, weight):
+        self.start = start
+        self.end = end
+        self.weight = weight
+
+    def __cmp__(self, other):
+        if self.weight > other.weight:
+            return 1
+        elif self.weight == other.weight:
+            return 0
+        else:
+            return -1
+
+    def __lt__(self, other):
+        return self.weight < other.weight
+
+    def __le__(self, other):
+        return self.weight <= other.weight
+
+    def __eq__(self, other):
+        return self.weight == other.weight
+
+    def __ne__(self, other):
+        return self.weight != other.weight
+
+    def __gt__(self, other):
+        return self.weight > other.weight
+
+    def __ge__(self, other):
+        return self.weight >= other.weight
