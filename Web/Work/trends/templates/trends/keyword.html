@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<section>
+    <h2 class ='fw-bold pb-3'> 키워드 추가</h2>
+    
+    <form action="{% url "trends:keyword" %}" method="POST">
+        {% csrf_token %}
+        {% comment %} {{form.as_p}} {% endcomment %}
+        <p>키워드 : <input type="text" name="name" style="width:200px;"> 
+        <input type="submit" value="생성하기"></p>
+    </form>
+    <hr>
+
+    <h3 class = 'my-3 py-3'>◾ 분석을 원하는 키워드 목록</h3>
+    {% for keyword in keywords %}
+
+    <p clas = "fs-5">{{keyword.pk}}번째 키워드 - {{keyword.name}}</p>
+    <form action="{% url "trends:detail" keyword.pk %}" method = "POST">
+        {% csrf_token %}
+        <input type="submit" value="삭제하기">
+    </form>
+    <hr>
+
+    {% empty %}
+    <p class="fs-5">❗ 아직 등록된 키워드가 없습니다.</p>
+
+    {% endfor %}
+</section>
+{% endblock content %}
